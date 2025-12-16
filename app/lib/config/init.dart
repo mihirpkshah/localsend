@@ -5,10 +5,8 @@ import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:common/api_route_builder.dart';
 import 'package:common/constants.dart';
 import 'package:common/isolate.dart';
-import 'package:common/model/dto/file_dto.dart';
 import 'package:common/model/dto/multicast_dto.dart';
 import 'package:common/util/logger.dart';
-import 'package:dart_mappable/dart_mappable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -57,7 +55,6 @@ Future<RefenaContainer> preInit(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
 
   initLogger(args.contains('-v') || args.contains('--verbose') ? Level.ALL : Level.INFO);
-  MapperContainer.globals.use(const FileDtoMapper());
 
   await RustLib.init();
 

@@ -18,6 +18,7 @@ class ReceiveRequestResponseDtoMapper
         _instance = ReceiveRequestResponseDtoMapper._(),
       );
       InfoDtoMapper.ensureInitialized();
+      FileDtoMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -129,7 +130,7 @@ abstract class ReceiveRequestResponseDtoCopyWith<
 >
     implements ClassCopyWith<$R, $In, $Out> {
   InfoDtoCopyWith<$R, InfoDto, InfoDto> get info;
-  MapCopyWith<$R, String, FileDto, ObjectCopyWith<$R, FileDto, FileDto>>
+  MapCopyWith<$R, String, FileDto, FileDtoCopyWith<$R, FileDto, FileDto>>
   get files;
   $R call({InfoDto? info, String? sessionId, Map<String, FileDto>? files});
   ReceiveRequestResponseDtoCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
@@ -150,10 +151,10 @@ class _ReceiveRequestResponseDtoCopyWithImpl<$R, $Out>
   InfoDtoCopyWith<$R, InfoDto, InfoDto> get info =>
       $value.info.copyWith.$chain((v) => call(info: v));
   @override
-  MapCopyWith<$R, String, FileDto, ObjectCopyWith<$R, FileDto, FileDto>>
+  MapCopyWith<$R, String, FileDto, FileDtoCopyWith<$R, FileDto, FileDto>>
   get files => MapCopyWith(
     $value.files,
-    (v, t) => ObjectCopyWith(v, $identity, t),
+    (v, t) => v.copyWith.$chain(t),
     (v) => call(files: v),
   );
   @override

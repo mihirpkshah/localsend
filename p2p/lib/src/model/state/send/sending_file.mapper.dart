@@ -14,6 +14,7 @@ class SendingFileMapper extends ClassMapperBase<SendingFile> {
   static SendingFileMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = SendingFileMapper._());
+      FileDtoMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -135,6 +136,7 @@ extension SendingFileValueCopy<$R, $Out>
 
 abstract class SendingFileCopyWith<$R, $In extends SendingFile, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
+  FileDtoCopyWith<$R, FileDto, FileDto> get file;
   ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>>? get bytes;
   $R call({
     FileDto? file,
@@ -157,6 +159,9 @@ class _SendingFileCopyWithImpl<$R, $Out>
   @override
   late final ClassMapperBase<SendingFile> $mapper =
       SendingFileMapper.ensureInitialized();
+  @override
+  FileDtoCopyWith<$R, FileDto, FileDto> get file =>
+      $value.file.copyWith.$chain((v) => call(file: v));
   @override
   ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>>? get bytes =>
       $value.bytes != null

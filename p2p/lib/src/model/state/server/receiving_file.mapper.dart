@@ -14,6 +14,7 @@ class ReceivingFileMapper extends ClassMapperBase<ReceivingFile> {
   static ReceivingFileMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = ReceivingFileMapper._());
+      FileDtoMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -133,6 +134,7 @@ extension ReceivingFileValueCopy<$R, $Out>
 
 abstract class ReceivingFileCopyWith<$R, $In extends ReceivingFile, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
+  FileDtoCopyWith<$R, FileDto, FileDto> get file;
   $R call({
     FileDto? file,
     FileStatus? status,
@@ -153,6 +155,9 @@ class _ReceivingFileCopyWithImpl<$R, $Out>
   @override
   late final ClassMapperBase<ReceivingFile> $mapper =
       ReceivingFileMapper.ensureInitialized();
+  @override
+  FileDtoCopyWith<$R, FileDto, FileDto> get file =>
+      $value.file.copyWith.$chain((v) => call(file: v));
   @override
   $R call({
     FileDto? file,
