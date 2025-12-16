@@ -1,6 +1,6 @@
-import 'package:localsend_app/model/persistence/favorite_device.dart';
 import 'package:localsend_app/provider/favorites_provider.dart';
 import 'package:mockito/mockito.dart';
+import 'package:p2p/p2p.dart' hide favoritesProvider, FavoritesService, UpdateFavoriteAction;
 import 'package:refena_flutter/refena_flutter.dart';
 import 'package:test/test.dart';
 
@@ -22,7 +22,7 @@ void main() {
 
     final device = _createDevice('1');
 
-    await service.dispatchAsync(AddFavoriteAction(device));
+    service.dispatch(AddFavoriteAction(device));
 
     expect(service.state, [device]);
     verify(persistenceService.setFavorites([device]));
@@ -40,7 +40,7 @@ void main() {
     expect(service.state.first.alias, 'A');
 
     final updatedDevice = _createDevice('1', alias: 'B');
-    await service.dispatchAsync(UpdateFavoriteAction(updatedDevice));
+    service.dispatch(UpdateFavoriteAction(updatedDevice));
 
     expect(service.state, [updatedDevice]);
     expect(service.state.first.alias, 'B');
@@ -59,7 +59,7 @@ void main() {
     expect(service.state.first.alias, 'A');
 
     final updatedDevice = _createDevice('2', alias: 'B');
-    await service.dispatchAsync(UpdateFavoriteAction(updatedDevice));
+    service.dispatch(UpdateFavoriteAction(updatedDevice));
 
     expect(service.state, [initialDevice]);
     expect(service.state.first.alias, 'A');
@@ -76,7 +76,7 @@ void main() {
     // Sanity check
     expect(service.state, [initialDevice]);
 
-    await service.dispatchAsync(RemoveFavoriteAction(deviceFingerprint: '111'));
+    service.dispatch(RemoveFavoriteAction(deviceFingerprint: '111'));
 
     expect(service.state, []);
     verify(persistenceService.setFavorites([]));
@@ -92,7 +92,7 @@ void main() {
     // Sanity check
     expect(service.state, [initialDevice]);
 
-    await service.dispatchAsync(RemoveFavoriteAction(deviceFingerprint: '222'));
+    service.dispatch(RemoveFavoriteAction(deviceFingerprint: '222'));
 
     expect(service.state, [initialDevice]);
     verifyNever(persistenceService.setFavorites(any));

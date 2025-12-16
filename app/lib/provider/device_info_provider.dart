@@ -4,9 +4,10 @@ import 'package:common/isolate.dart';
 import 'package:common/model/device.dart';
 import 'package:common/model/device_info_result.dart';
 import 'package:localsend_app/provider/local_ip_provider.dart';
-import 'package:localsend_app/provider/network/server/server_provider.dart';
 import 'package:localsend_app/provider/security_provider.dart';
 import 'package:localsend_app/provider/settings_provider.dart';
+import 'package:localsend_app/util/native/device_info_helper.dart';
+import 'package:p2p/p2p.dart' hide PersistenceService, persistenceProvider, securityProvider;
 import 'package:refena_flutter/refena_flutter.dart';
 
 final deviceRawInfoProvider = Provider<DeviceInfoResult>((ref) {

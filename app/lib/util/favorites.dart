@@ -1,6 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:common/model/device.dart';
-import 'package:localsend_app/model/persistence/favorite_device.dart';
+import 'package:p2p/p2p.dart';
 
 extension FavoriteDevicesExt on Iterable<FavoriteDevice> {
   /// Returns the favorite device with the given [device] or null if not found.

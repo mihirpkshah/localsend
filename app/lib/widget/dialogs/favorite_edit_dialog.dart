@@ -3,11 +3,11 @@ import 'package:common/model/device.dart';
 import 'package:flutter/material.dart';
 import 'package:localsend_app/config/theme.dart';
 import 'package:localsend_app/gen/strings.g.dart';
-import 'package:localsend_app/model/persistence/favorite_device.dart';
 import 'package:localsend_app/provider/favorites_provider.dart';
 import 'package:localsend_app/provider/settings_provider.dart';
 import 'package:localsend_app/widget/dialogs/error_dialog.dart';
 import 'package:localsend_app/widget/dialogs/favorite_delete_dialog.dart';
+import 'package:p2p/p2p.dart' hide favoritesProvider, FavoritesService, UpdateFavoriteAction;
 import 'package:refena_flutter/refena_flutter.dart';
 import 'package:routerino/routerino.dart';
 
@@ -101,7 +101,7 @@ class _FavoriteEditDialogState extends State<FavoriteEditDialog> with Refena {
                   );
 
                   if (context.mounted && result == true) {
-                    await context.ref.redux(favoritesProvider).dispatchAsync(RemoveFavoriteAction(deviceFingerprint: widget.favorite!.fingerprint));
+                    context.ref.redux(favoritesProvider).dispatch(RemoveFavoriteAction(deviceFingerprint: widget.favorite!.fingerprint));
                     if (context.mounted) {
                       context.pop();
                     }
@@ -163,9 +163,9 @@ class _FavoriteEditDialogState extends State<FavoriteEditDialog> with Refena {
                       return;
                     }
 
-                    await ref
+                    ref
                         .redux(favoritesProvider)
-                        .dispatchAsync(
+                        .dispatch(
                           UpdateFavoriteAction(
                             existingFavorite.copyWith(
                               ip: _ipController.text,
@@ -197,9 +197,9 @@ class _FavoriteEditDialogState extends State<FavoriteEditDialog> with Refena {
 
                       final name = _aliasController.text.trim();
 
-                      await ref
+                      ref
                           .redux(favoritesProvider)
-                          .dispatchAsync(
+                          .dispatch(
                             AddFavoriteAction(
                               FavoriteDevice.fromValues(
                                 fingerprint: result.fingerprint,

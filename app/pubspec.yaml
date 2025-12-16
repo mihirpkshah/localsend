@@ -56,12 +56,12 @@ dependencies:
   path_provider_foundation: 2.4.0
   permission_handler: 11.3.1
   pretty_qr_code: 3.3.0
-  refena_flutter: 3.1.0
+  refena_flutter: 3.2.0
   refena_inspector_client: 2.1.0
   rhttp: 0.13.0
   routerino: 0.8.0
-  rust_lib_localsend_app:
-    path: rust_builder
+  p2p:
+    path: ../p2p
   saf_stream: 0.10.0
   screen_retriever: 0.2.0
   share_handler: 0.0.22
