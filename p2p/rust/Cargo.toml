@@ -1,5 +1,5 @@
 [package]
-name = "rust_lib_localsend_app"
+name = "p2p"
 version = "0.1.0"
 edition = "2021"
 
